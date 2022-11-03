@@ -103,10 +103,6 @@ public class ArrayOperations {
 //        }
 //        return false;
     }
-    // ####################################################################
-    //      BIS HIER WURDE VON MIR SELBST AUSGEFÜHRT!!! Danach im Kurs -
-    //      Unbedingt selbst nochmal probieren !!!
-    // ####################################################################
 
     /**
      * @return the average value of all elements summed up.
@@ -137,14 +133,14 @@ public class ArrayOperations {
      * @return the max value of the array. In the array [1,9,3] max would be 9.
      */
     public int maxValue() {
-        return 0;
-    }
+        return sort()[numbers.length - 1];
+            }
 
     /**
      * @return the min value of the array. In the array [1,9,3] min would be 1.
      */
     public int minValue() {
-        return 0;
+        return sort()[0];
     }
 
     /* **********************************************************
