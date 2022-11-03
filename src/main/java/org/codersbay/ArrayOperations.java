@@ -1,5 +1,7 @@
 package org.codersbay;
 
+import java.util.Arrays;
+
 /**
  * Utility class which performs various operations with integer arrays.
  */
@@ -22,7 +24,12 @@ public class ArrayOperations {
      */
 
     public void print() {
-
+//        System.out.println(Arrays.toString(numbers));
+        System.out.print("[");
+        for (int number: numbers){
+            System.out.print(number + " ");
+        }
+        System.out.print("]");
     }
 
     /**
@@ -30,43 +37,100 @@ public class ArrayOperations {
      * @see <a href="sorting algortihms">http://faculty.cs.niu.edu/~hutchins/csci241/sorting.htm</a>
      */
     public int[] sort() {
-        return null;
+        int[] sortieren = numbers;
+        for (int i = 0; i < sortieren.length; i++) {
+            for (int j = 0; j < sortieren.length; j++) {
+                if (sortieren[i] < sortieren[j]){
+                    int tmp = 0;
+                    tmp = sortieren[j];
+                    sortieren[j] = sortieren[i];
+                    sortieren[i] = tmp;
+                }
+            }
+        }
+        return sortieren;
     }
-
     /**
      * @return the sorted array in reverse order
      */
     public int[] revertSort() {
-        return null;
+        int[] reverseSort = sort();
+        for (int i = 0; i < reverseSort.length; i++){
+            for (int j = 0; j < reverseSort.length; j++) {
+                if (reverseSort[i] > reverseSort[j]){
+                    int tmp2 = 0;
+                    tmp2 = reverseSort[j];
+                    reverseSort[j] = reverseSort[i];
+                    reverseSort[i] = tmp2;
+                }
+            }
+        }
+        return reverseSort;
+
+
     }
 
     /**
      * @return the unsorted array in reverted order.
      */
     public int[] reverted() {
-        return null;
+        int revertedNumbers[] = new int[numbers.length];
+        int j = numbers.length-1;
+//        numbers[0] = revertedNumbers[9];
+        for (int i = 0; i < revertedNumbers.length; i++ ) {
+            revertedNumbers[i] = numbers[j];
+//            System.out.println(i + "= i // j =" + j);
+            j = j-1;
+        }
+        return revertedNumbers;
     }
+
 
     /**
      * @param value which should be searched for.
      * @return true if the array contains the value, false otherwise.
      */
     public boolean contains(int value) {
+        for (int i = 0; i < numbers.length; i++){
+//            System.out.println("Is on pos " + i + " which is " + numbers[i] +" == " + value + "? -" + (numbers[i] == value));
+            if (numbers[i] == value) {
+                return true;
+            }
+        }
         return false;
+//        for (int number : numbers) {
+//            if (number == value) return true;
+//        }
+//        return false;
     }
+    // ####################################################################
+    //      BIS HIER WURDE VON MIR SELBST AUSGEFÜHRT!!! Danach im Kurs -
+    //      Unbedingt selbst nochmal probieren !!!
+    // ####################################################################
 
     /**
      * @return the average value of all elements summed up.
      */
     public double average() {
-        return 0.0;
+        double sum = 0.0;
+        for (int number: numbers) {
+            sum += number;
+        }
+        return sum / numbers.length;
     }
 
     /**
      * @return the average value of all elements summed up, but without the highest and the lowest value.
      */
     public double trimmedMean() {
-        return 0.0;
+        int[] trimmed = new int[numbers.length - 2];
+        int[] sorted = sort();
+        int j  = 0;
+        for (int i = 1; i < sorted.length - 1; i++) {
+            trimmed[j++] = sorted[i];
+        }
+
+        return average(trimmed);
     }
 
     /**
@@ -90,5 +154,12 @@ public class ArrayOperations {
 
     private int someHelper(int[] tmp) {
         return 1;
+    }
+    private double average(int[] average){
+        double sum = 0.0;
+        for (int number : average) {
+            sum += number;
+        }
+        return sum / average.length;
     }
 }
